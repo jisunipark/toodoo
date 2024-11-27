@@ -25,6 +25,8 @@ const $addButton = document.getElementById('add-button');
 const $itemList = document.querySelector('.item-list');
 
 $addButton.addEventListener('click', () => {
+  const $todoInputItem = document.querySelector('.input');
+  if ($todoInputItem) return;
   $itemList.appendChild(createInputItemElement());
 });
 
