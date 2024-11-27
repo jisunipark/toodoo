@@ -38,3 +38,10 @@ export const addTodoItem = (e) => {
     e.target.value = '';
   }
 };
+
+// esc 누르면 입력창 사라짐
+export const closeInputItem = (e) => {
+  if (e.key === 'Escape') {
+    $itemList.removeChild(document.querySelector('.input'));
+  }
+};

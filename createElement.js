@@ -1,4 +1,4 @@
-import { addTodoItem } from './index.js';
+import { addTodoItem, closeInputItem } from './index.js';
 
 // 입력창 아이템 요소를 생성하여 반환하는 함수
 export const createInputItemElement = () => {
@@ -12,6 +12,7 @@ export const createInputItemElement = () => {
   $todoInput.type = 'text';
   $todoInput.classList.add('todo-input');
   $todoInput.addEventListener('keydown', addTodoItem);
+  $todoInput.addEventListener('keydown', closeInputItem);
 
   const $small = document.createElement('small');
   const textNode = document.createTextNode('24/11/27');
