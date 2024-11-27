@@ -11,7 +11,7 @@ export const createInputItemElement = () => {
   const $todoInput = document.createElement('input');
   $todoInput.type = 'text';
   $todoInput.classList.add('todo-input');
-  $todoInput.addEventListener('keyup', addTodoItem);
+  $todoInput.addEventListener('keydown', addTodoItem);
 
   const $small = document.createElement('small');
   const textNode = document.createTextNode('24/11/27');
