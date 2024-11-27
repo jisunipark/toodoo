@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 button {
   background: inherit;
   border: none;
@@ -6,6 +11,10 @@ button {
   padding: 0;
   overflow: visible;
   cursor: pointer;
+}
+
+input:focus {
+  outline: none;
 }
 
 header {
@@ -47,12 +56,32 @@ header {
   flex: 1 0 0;
 }
 
+.todo-input {
+  display: flex;
+  padding: 0px 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1 0 0;
+  border-radius: 8px;
+  background: #f2f2f2;
+  border: none;
+
+  color: #000;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 28px; /* 175% */
+}
+
 .done > .todo {
   color: #777;
   text-decoration: line-through;
 }
 
 .date {
+  width: 50px;
   color: #777;
   text-align: center;
   font-family: Pretendard;
@@ -72,8 +101,10 @@ header {
 
 .hover > .button-pair {
   display: flex;
+  justify-content: end;
   align-items: center;
   gap: 8px;
+  width: 50px;
 }
 
 #add-button {
