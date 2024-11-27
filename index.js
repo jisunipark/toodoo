@@ -1,4 +1,4 @@
-import { createInputItemElement } from './createElement.js';
+import { createInputItemElement, createTodoItemElement } from './createElement.js';
 
 const $items = document.querySelectorAll('.item');
 
@@ -27,3 +27,11 @@ const $itemList = document.querySelector('.item-list');
 $addButton.addEventListener('click', () => {
   $itemList.appendChild(createInputItemElement());
 });
+
+// 엔터 시 아이템 추가
+export const addTodoItem = (e) => {
+  if (e.key !== 'Enter') return;
+  const $todoInputItem = document.querySelector('.input');
+  $itemList.insertBefore(createTodoItemElement(e.target.value), $todoInputItem);
+  e.target.value = '';
+};
