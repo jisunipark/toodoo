@@ -1,4 +1,7 @@
 import { createInputItemElement, createTodoItemElement } from './createElement.js';
+import { getFormattedDate } from './util.js';
+
+if (!localStorage.length) localStorage.setItem('todos', '[]');
 
 const $items = document.querySelectorAll('.item');
 
@@ -33,6 +36,17 @@ $addButton.addEventListener('click', () => {
 // 엔터 시 아이템 추가
 export const addTodoItem = (e) => {
   if (e.key === 'Enter' && !e.isComposing) {
+    const newItem = {
+      id: crypto.randomUUID(),
+      checked: false,
+      todo: e.target.value,
+      date: getFormattedDate(new Date()),
+    };
+
+    const todos = JSON.parse(localStorage.getItem('todos'));
+    todos.push(newItem);
+    localStorage.setItem('todos', JSON.stringify(todos));
+
     const $todoInputItem = document.querySelector('.input');
     $itemList.insertBefore(createTodoItemElement(e.target.value), $todoInputItem);
     e.target.value = '';
