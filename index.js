@@ -1,4 +1,4 @@
-import { createInputItemElement, createTodoItemElement } from './paint.js';
+import { createInputItemElement, paintTodo } from './paint.js';
 import { getFormattedDate } from './util.js';
 
 const $itemList = document.querySelector('.item-list');
@@ -13,7 +13,7 @@ if (!data || !data.length) {
 } else {
   data.forEach((item) => {
     const { checked, todo, date } = item;
-    $itemList.appendChild(createTodoItemElement(checked, todo, date));
+    paintTodo(checked, todo, date);
   });
 }
 
@@ -66,7 +66,7 @@ export const addTodoItem = (e) => {
     });
     updatedData.forEach((item) => {
       const { checked, todo, date } = item;
-      $itemList.appendChild(createTodoItemElement(checked, todo, date));
+      paintTodo(checked, todo, date);
     });
     $itemList.appendChild(createInputItemElement());
 
