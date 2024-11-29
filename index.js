@@ -43,6 +43,7 @@ export const addTodoItem = (e) => {
       date: getFormattedDate(new Date()),
     };
 
+    console.log(getFormattedDate(new Date()));
     const todos = JSON.parse(localStorage.getItem('todos'));
     todos.push(newItem);
     localStorage.setItem('todos', JSON.stringify(todos));
