@@ -36,9 +36,26 @@ header {
   letter-spacing: 0px;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.item-list {
+  width: 100%;
+  max-width: 500px;
+}
+
+.empty-msg {
+  display: none;
+}
+
 .item {
   display: flex;
   height: 56px;
+  width: 100%;
   padding: 0px 16px;
   align-items: center;
   gap: 8px;
