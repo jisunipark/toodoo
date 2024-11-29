@@ -2,6 +2,9 @@ import { addTodoItem, closeInputItem } from './index.js';
 
 // 입력창 아이템 요소를 생성하여 반환하는 함수
 export const createInputItemElement = () => {
+  const $emptyMsg = document.querySelector('.empty-msg');
+  $emptyMsg.style.display = 'none';
+
   const $div = document.createElement('div');
   $div.classList.add('item', 'input');
 
@@ -48,12 +51,13 @@ export const createInputItemElement = () => {
 };
 
 // 투두 아이템 요소를 생성하여 반환하는 함수
-export const createTodoItemElement = (todo) => {
+export const createTodoItemElement = (checked, todo, date) => {
   const $div = document.createElement('div');
   $div.classList.add('item');
 
   const $checkboxInput = document.createElement('input');
   $checkboxInput.type = 'checkbox';
+  $checkboxInput.checked = checked;
 
   const $span = document.createElement('span');
   const todoText = document.createTextNode(todo);
@@ -61,7 +65,7 @@ export const createTodoItemElement = (todo) => {
   $span.classList.add('todo');
 
   const $small = document.createElement('small');
-  const textNode = document.createTextNode('24/11/27');
+  const textNode = document.createTextNode(date);
   $small.appendChild(textNode);
   $small.classList.add('date');
 

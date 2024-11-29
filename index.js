@@ -1,7 +1,21 @@
 import { createInputItemElement, createTodoItemElement } from './createElement.js';
 import { getFormattedDate } from './util.js';
 
-if (!localStorage.length) localStorage.setItem('todos', '[]');
+const $itemList = document.querySelector('.item-list');
+const $emptyMsg = document.querySelector('.empty-msg');
+
+// 렌더링 시 localStorage 있는 값들을 확인하여 DOM에 그리기
+const data = JSON.parse(localStorage.getItem('todos'));
+
+if (!data || !data.length) {
+  localStorage.setItem('todos', '[]');
+  $emptyMsg.style.display = 'flex';
+} else {
+  data.forEach((item) => {
+    const { checked, todo, date } = item;
+    $itemList.appendChild(createTodoItemElement(checked, todo, date));
+  });
+}
 
 const $items = document.querySelectorAll('.item');
 
@@ -25,7 +39,6 @@ const $items = document.querySelectorAll('.item');
 
 // 아이템 추가 버튼 클릭 시 입력창 아이템 요소가 추가되도록
 const $addButton = document.getElementById('add-button');
-const $itemList = document.querySelector('.item-list');
 
 $addButton.addEventListener('click', () => {
   const $todoInputItem = document.querySelector('.input');
@@ -43,14 +56,23 @@ export const addTodoItem = (e) => {
       date: getFormattedDate(new Date()),
     };
 
-    console.log(getFormattedDate(new Date()));
     const todos = JSON.parse(localStorage.getItem('todos'));
     todos.push(newItem);
     localStorage.setItem('todos', JSON.stringify(todos));
 
-    const $todoInputItem = document.querySelector('.input');
-    $itemList.insertBefore(createTodoItemElement(e.target.value), $todoInputItem);
-    e.target.value = '';
+    const updatedData = JSON.parse(localStorage.getItem('todos'));
+    [...$itemList.children].forEach((item) => {
+      $itemList.removeChild(item);
+    });
+    updatedData.forEach((item) => {
+      const { checked, todo, date } = item;
+      $itemList.appendChild(createTodoItemElement(checked, todo, date));
+    });
+    $itemList.appendChild(createInputItemElement());
+
+    // const $todoInputItem = document.querySelector('.input');
+    // $itemList.insertBefore(createTodoItemElement(e.target.value), $todoInputItem);
+    // e.target.value = '';
   }
 };
 
