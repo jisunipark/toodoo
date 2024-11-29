@@ -1,4 +1,4 @@
-import { createInputItemElement, createTodoItemElement } from './createElement.js';
+import { createInputItemElement, createTodoItemElement } from './paint.js';
 import { getFormattedDate } from './util.js';
 
 const $itemList = document.querySelector('.item-list');
