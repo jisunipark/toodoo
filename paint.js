@@ -1,4 +1,4 @@
-import { addTodoItem, closeInputItem } from './index.js';
+import { addTodoItem, closeInputItem, todos, saveTodo } from './index.js';
 
 // 입력창 아이템 요소를 생성하여 반환하는 함수
 export const createInputItemElement = () => {
@@ -51,7 +51,9 @@ export const createInputItemElement = () => {
 };
 
 // 투두 아이템 요소를 생성한 후 item list에 추가하는 함수
-export const paintTodo = (checked, todo, date) => {
+export const paintTodo = (item) => {
+  const { checked, todo, date } = item;
+
   const $div = document.createElement('div');
   $div.classList.add('item');
 
@@ -106,5 +108,8 @@ export const paintTodo = (checked, todo, date) => {
   });
 
   const $itemList = document.querySelector('.item-list');
-  $itemList.appendChild($div);
+  const $todoInput = document.querySelector('.input');
+  $itemList.insertBefore($div, $todoInput);
+  todos.push(item);
+  saveTodo();
 };

@@ -4,18 +4,26 @@ import { getFormattedDate } from './util.js';
 const $itemList = document.querySelector('.item-list');
 const $emptyMsg = document.querySelector('.empty-msg');
 
-// 렌더링 시 localStorage 있는 값들을 확인하여 DOM에 그리기
-const data = JSON.parse(localStorage.getItem('todos'));
+export const todos = [];
 
-if (!data || !data.length) {
-  localStorage.setItem('todos', '[]');
-  $emptyMsg.style.display = 'flex';
-} else {
-  data.forEach((item) => {
-    const { checked, todo, date } = item;
-    paintTodo(checked, todo, date);
-  });
-}
+// todos 배열을 local storage에 동기화 시킴
+export const saveTodo = () => {
+  localStorage.setItem('todos', JSON.stringify(todos));
+};
+
+// 렌더링 시 localStorage 있는 값들을 확인하여 DOM에 그리기
+const loadTodos = () => {
+  const loadedTodos = JSON.parse(localStorage.getItem('todos'));
+  if (!loadedTodos || !loadedTodos.length) {
+    localStorage.setItem('todos', '[]');
+    $emptyMsg.style.display = 'flex';
+  } else {
+    loadedTodos.forEach((item) => {
+      paintTodo(item);
+    });
+  }
+};
+loadTodos();
 
 // 아이템 추가 버튼 클릭 시 입력창 아이템 요소가 추가되도록
 const $addButton = document.getElementById('add-button');
@@ -35,20 +43,8 @@ export const addTodoItem = (e) => {
       todo: e.target.value,
       date: getFormattedDate(new Date()),
     };
-
-    const todos = JSON.parse(localStorage.getItem('todos'));
-    todos.push(newItem);
-    localStorage.setItem('todos', JSON.stringify(todos));
-
-    const updatedData = JSON.parse(localStorage.getItem('todos'));
-    [...$itemList.children].forEach((item) => {
-      $itemList.removeChild(item);
-    });
-    updatedData.forEach((item) => {
-      const { checked, todo, date } = item;
-      paintTodo(checked, todo, date);
-    });
-    $itemList.appendChild(createInputItemElement());
+    paintTodo(newItem);
+    e.target.value = '';
   }
 };
 
