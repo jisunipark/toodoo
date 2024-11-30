@@ -11,6 +11,14 @@ export const saveTodo = () => {
   localStorage.setItem('todos', JSON.stringify(todos));
 };
 
+// 체크박스 클릭 시 todos와 localStorage에 변경 사항 반영
+export const toggleCheckbox = (e) => {
+  const targetId = e.target.parentNode.id;
+  todos.find((todo) => todo.id === targetId).checked = !todos.find((todo) => todo.id === targetId)
+    .checked;
+  saveTodo();
+};
+
 // 렌더링 시 localStorage 있는 값들을 확인하여 DOM에 그리기
 const loadTodos = () => {
   const loadedTodos = JSON.parse(localStorage.getItem('todos'));

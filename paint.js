@@ -1,4 +1,4 @@
-import { addTodoItem, closeInputItem, todos, saveTodo } from './index.js';
+import { addTodoItem, closeInputItem, todos, saveTodo, toggleCheckbox } from './index.js';
 
 // 입력창 아이템 요소를 생성하여 반환하는 함수
 export const createInputItemElement = () => {
@@ -52,10 +52,11 @@ export const createInputItemElement = () => {
 
 // 투두 아이템 요소를 생성한 후 item list에 추가하는 함수
 export const paintTodo = (item) => {
-  const { checked, todo, date } = item;
+  const { id, checked, todo, date } = item;
 
   const $div = document.createElement('div');
   $div.classList.add('item');
+  $div.id = id;
 
   const $checkboxInput = document.createElement('input');
   $checkboxInput.type = 'checkbox';
@@ -63,6 +64,7 @@ export const paintTodo = (item) => {
   $checkboxInput.addEventListener('click', () => {
     $div.classList.toggle('done');
   });
+  $checkboxInput.addEventListener('click', toggleCheckbox);
 
   const $span = document.createElement('span');
   const todoText = document.createTextNode(todo);
