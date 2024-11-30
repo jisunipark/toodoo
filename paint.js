@@ -5,6 +5,8 @@ import {
   saveTodo,
   toggleCheckbox,
   handleClickEdit,
+  handleMouseLeave,
+  handleMouseOver,
 } from './index.js';
 
 // 입력창 아이템 요소를 생성하여 반환하는 함수
@@ -107,13 +109,8 @@ export const paintTodo = (item) => {
   $div.appendChild($small);
   $div.appendChild($buttonDiv);
 
-  $div.addEventListener('mouseover', () => {
-    $div.classList.add('hover');
-  });
-
-  $div.addEventListener('mouseleave', () => {
-    $div.classList.remove('hover');
-  });
+  $div.addEventListener('mouseover', handleMouseOver);
+  $div.addEventListener('mouseleave', handleMouseLeave);
 
   const $itemList = document.querySelector('.item-list');
   const $todoInput = document.querySelector('.input');

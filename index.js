@@ -6,6 +6,9 @@ const $emptyMsg = document.querySelector('.empty-msg');
 
 export const todos = [];
 
+export const handleMouseOver = (e) => e.currentTarget.classList.add('hover');
+export const handleMouseLeave = (e) => e.currentTarget.classList.remove('hover');
+
 // todos 배열을 local storage에 동기화 시킴
 export const saveTodo = () => {
   localStorage.setItem('todos', JSON.stringify(todos));
@@ -21,6 +24,30 @@ export const toggleCheckbox = (e) => {
   saveTodo();
 };
 
+const handleEnterEdit = (e) => {
+  if (e.key === 'Enter' && !e.isComposing) {
+    // DOM에 반영
+    const $parentItem = e.target.parentNode;
+    const $todo = document.createElement('span');
+    const todoText = document.createTextNode(e.target.value);
+    $todo.appendChild(todoText);
+    $todo.classList.add('todo');
+
+    const $date = $parentItem.querySelector('.date');
+    $parentItem.removeChild(e.target);
+    $parentItem.insertBefore($todo, $date);
+
+    $parentItem.addEventListener('mouseover', handleMouseOver);
+
+    // todos 배열에 반영
+    const thisTodo = todos.find((todo) => todo.id === $parentItem.id);
+    thisTodo.todo = e.target.value;
+
+    // 로컬 스토리지에 저장
+    saveTodo();
+  }
+};
+
 export const handleClickEdit = (e) => {
   const $parentItem = e.currentTarget.parentNode.parentNode;
   const $todo = $parentItem.querySelector('.todo');
@@ -32,13 +59,10 @@ export const handleClickEdit = (e) => {
   $todoInput.value = $todo.textContent;
 
   const $date = $parentItem.querySelector('.date');
+  $parentItem.removeEventListener('mouseover', handleMouseOver);
   $parentItem.insertBefore($todoInput, $date);
 
-  const targetId = $parentItem.id;
-  console.log(targetId);
-
-  // $todoInput.addEventListener('keydown', addTodoItem);
-  // $todoInput.addEventListener('keydown', closeInputItem);
+  $todoInput.addEventListener('keydown', handleEnterEdit);
 };
 
 // 렌더링 시 localStorage 있는 값들을 확인하여 DOM에 그리기
