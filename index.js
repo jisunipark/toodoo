@@ -13,7 +13,9 @@ export const saveTodo = () => {
 
 // 체크박스 클릭 시 todos와 localStorage에 변경 사항 반영
 export const toggleCheckbox = (e) => {
-  const targetId = e.target.parentNode.id;
+  const $parentItem = e.currentTarget.parentNode;
+  $parentItem.classList.toggle('done');
+  const targetId = $parentItem.id;
   todos.find((todo) => todo.id === targetId).checked = !todos.find((todo) => todo.id === targetId)
     .checked;
   saveTodo();

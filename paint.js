@@ -68,9 +68,7 @@ export const paintTodo = (item) => {
   const $checkboxInput = document.createElement('input');
   $checkboxInput.type = 'checkbox';
   $checkboxInput.checked = checked;
-  $checkboxInput.addEventListener('click', () => {
-    $div.classList.toggle('done');
-  });
+  checked && $div.classList.add('done');
   $checkboxInput.addEventListener('click', toggleCheckbox);
 
   const $span = document.createElement('span');
