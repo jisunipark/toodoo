@@ -1,4 +1,11 @@
-import { addTodoItem, closeInputItem, todos, saveTodo, toggleCheckbox } from './index.js';
+import {
+  addTodoItem,
+  closeInputItem,
+  todos,
+  saveTodo,
+  toggleCheckbox,
+  handleClickEdit,
+} from './index.js';
 
 // 입력창 아이템 요소를 생성하여 반환하는 함수
 export const createInputItemElement = () => {
@@ -84,6 +91,7 @@ export const paintTodo = (item) => {
   const $editButton = document.createElement('button');
   $editButton.type = 'button';
   $editButton.classList.add('edit-button');
+  $editButton.addEventListener('click', handleClickEdit);
   $editButton.appendChild($editImg);
 
   const $deleteButton = document.createElement('button');

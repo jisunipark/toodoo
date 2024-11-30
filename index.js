@@ -19,6 +19,26 @@ export const toggleCheckbox = (e) => {
   saveTodo();
 };
 
+export const handleClickEdit = (e) => {
+  const $parentItem = e.currentTarget.parentNode.parentNode;
+  const $todo = $parentItem.querySelector('.todo');
+  $parentItem.removeChild($todo);
+
+  const $todoInput = document.createElement('input');
+  $todoInput.type = 'text';
+  $todoInput.classList.add('todo-input', 'editting');
+  $todoInput.value = $todo.textContent;
+
+  const $date = $parentItem.querySelector('.date');
+  $parentItem.insertBefore($todoInput, $date);
+
+  const targetId = $parentItem.id;
+  console.log(targetId);
+
+  // $todoInput.addEventListener('keydown', addTodoItem);
+  // $todoInput.addEventListener('keydown', closeInputItem);
+};
+
 // 렌더링 시 localStorage 있는 값들을 확인하여 DOM에 그리기
 const loadTodos = () => {
   const loadedTodos = JSON.parse(localStorage.getItem('todos'));
