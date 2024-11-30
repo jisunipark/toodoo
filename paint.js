@@ -58,6 +58,9 @@ export const paintTodo = (checked, todo, date) => {
   const $checkboxInput = document.createElement('input');
   $checkboxInput.type = 'checkbox';
   $checkboxInput.checked = checked;
+  $checkboxInput.addEventListener('click', () => {
+    $div.classList.toggle('done');
+  });
 
   const $span = document.createElement('span');
   const todoText = document.createTextNode(todo);
@@ -93,6 +96,14 @@ export const paintTodo = (checked, todo, date) => {
   $div.appendChild($span);
   $div.appendChild($small);
   $div.appendChild($buttonDiv);
+
+  $div.addEventListener('mouseover', () => {
+    $div.classList.add('hover');
+  });
+
+  $div.addEventListener('mouseleave', () => {
+    $div.classList.remove('hover');
+  });
 
   const $itemList = document.querySelector('.item-list');
   $itemList.appendChild($div);
