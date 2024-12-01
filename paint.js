@@ -1,6 +1,6 @@
 import {
-  addTodoItem,
-  closeInputItem,
+  handleAddTodo,
+  handleCloseInput,
   todos,
   saveTodo,
   toggleCheckbox,
@@ -23,8 +23,8 @@ export const createInputItemElement = () => {
   const $todoInput = document.createElement('input');
   $todoInput.type = 'text';
   $todoInput.classList.add('todo-input');
-  $todoInput.addEventListener('keydown', addTodoItem);
-  $todoInput.addEventListener('keydown', closeInputItem);
+  $todoInput.addEventListener('keydown', handleAddTodo);
+  $todoInput.addEventListener('keydown', handleCloseInput);
 
   const $small = document.createElement('small');
   const textNode = document.createTextNode('24/11/27');

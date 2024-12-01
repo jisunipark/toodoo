@@ -89,7 +89,7 @@ $addButton.addEventListener('click', () => {
 });
 
 // 엔터 시 아이템 추가
-export const addTodoItem = (e) => {
+export const handleAddTodo = (e) => {
   if (e.key === 'Enter' && !e.isComposing) {
     const newItem = {
       id: crypto.randomUUID(),
@@ -103,7 +103,7 @@ export const addTodoItem = (e) => {
 };
 
 // esc 누르면 입력창 사라짐
-export const closeInputItem = (e) => {
+export const handleCloseInput = (e) => {
   if (e.key === 'Escape') {
     $itemList.removeChild(document.querySelector('.input'));
   }
