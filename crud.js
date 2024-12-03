@@ -20,3 +20,6 @@ export const getTodos = () => {
 // update
 
 // delete
+export const deleteTodo = (id) => {
+  todos = todos.filter((todo) => todo.id !== id);
+};
