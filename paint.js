@@ -7,6 +7,7 @@ import {
   handleClickEdit,
   handleMouseLeave,
   handleMouseOver,
+  handleClickDelete,
 } from './index.js';
 
 // 입력창 아이템 요소를 생성하여 반환하는 함수
@@ -97,6 +98,7 @@ export const paintTodo = (item) => {
   const $deleteButton = document.createElement('button');
   $deleteButton.type = 'button';
   $deleteButton.classList.add('delete-button');
+  $deleteButton.addEventListener('click', handleClickDelete);
   $deleteButton.appendChild($deleteImg);
 
   const $buttonDiv = document.createElement('div');
