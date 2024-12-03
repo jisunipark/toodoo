@@ -1,14 +1,13 @@
+import { todos, saveTodo } from './index.js';
 import {
   handleAddTodo,
   handleCloseInput,
-  todos,
-  saveTodo,
+  handleClickDelete,
   toggleCheckbox,
   handleClickEdit,
   handleMouseLeave,
   handleMouseOver,
-  handleClickDelete,
-} from './index.js';
+} from './handle.js';
 
 // 입력창 아이템 요소를 생성하여 반환하는 함수
 export const createInputItemElement = () => {
