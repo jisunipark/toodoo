@@ -1,7 +1,7 @@
 import { getFormattedDate } from './util.js';
 import { openModal, $itemList, $modal } from './index.js';
 import { paintTodo } from './paint.js';
-import { setTodos, deleteTodo } from './crud.js';
+import { setTodos, deleteTodo, editTodo } from './crud.js';
 
 export const handleMouseOver = (e) => e.currentTarget.classList.add('hover');
 export const handleMouseLeave = (e) => e.currentTarget.classList.remove('hover');
@@ -43,8 +43,7 @@ export const handleEnterEdit = (e) => {
     $parentItem.addEventListener('mouseover', handleMouseOver);
 
     // todos 배열에 반영
-    const thisTodo = todos.find((todo) => todo.id === $parentItem.id);
-    thisTodo.todo = e.target.value;
+    editTodo($parentItem.id, e.target.value);
 
     // 로컬 스토리지에 저장
     setTodos();

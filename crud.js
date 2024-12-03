@@ -18,6 +18,10 @@ export const getTodos = () => {
 };
 
 // update
+export const editTodo = (id, newTodo) => {
+  const thisTodo = todos.find((todo) => todo.id === id);
+  thisTodo.todo = newTodo;
+};
 
 // delete
 export const deleteTodo = (id) => {
