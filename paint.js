@@ -1,12 +1,12 @@
 import { addTodo, setTodos } from './crud.js';
 import {
-  handleAddTodo,
-  handleCloseInput,
-  handleClickDelete,
-  toggleCheckbox,
-  handleClickEdit,
-  handleMouseLeave,
   handleMouseOver,
+  handleMouseLeave,
+  handleEnterAdd,
+  handleCloseInput,
+  handleToggleCheckbox,
+  handleClickEditIcon,
+  handleClickDeleteIcon,
 } from './handle.js';
 
 // 입력창 아이템 요소를 생성하여 반환하는 함수
@@ -23,7 +23,7 @@ export const createInputItemElement = () => {
   const $todoInput = document.createElement('input');
   $todoInput.type = 'text';
   $todoInput.classList.add('todo-input');
-  $todoInput.addEventListener('keydown', handleAddTodo);
+  $todoInput.addEventListener('keydown', handleEnterAdd);
   $todoInput.addEventListener('keydown', handleCloseInput);
 
   const $small = document.createElement('small');
@@ -71,7 +71,7 @@ export const paintTodo = (item) => {
   $checkboxInput.type = 'checkbox';
   $checkboxInput.checked = checked;
   checked && $div.classList.add('done');
-  $checkboxInput.addEventListener('click', toggleCheckbox);
+  $checkboxInput.addEventListener('click', handleToggleCheckbox);
 
   const $span = document.createElement('span');
   const todoText = document.createTextNode(todo);
@@ -91,13 +91,13 @@ export const paintTodo = (item) => {
   const $editButton = document.createElement('button');
   $editButton.type = 'button';
   $editButton.classList.add('edit-button');
-  $editButton.addEventListener('click', handleClickEdit);
+  $editButton.addEventListener('click', handleClickEditIcon);
   $editButton.appendChild($editImg);
 
   const $deleteButton = document.createElement('button');
   $deleteButton.type = 'button';
   $deleteButton.classList.add('delete-button');
-  $deleteButton.addEventListener('click', handleClickDelete);
+  $deleteButton.addEventListener('click', handleClickDeleteIcon);
   $deleteButton.appendChild($deleteImg);
 
   const $buttonDiv = document.createElement('div');
