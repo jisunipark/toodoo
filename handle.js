@@ -1,6 +1,7 @@
 import { getFormattedDate } from './util.js';
-import { todos, openModal, saveTodo, $itemList, $modal } from './index.js';
+import { openModal, $itemList, $modal } from './index.js';
 import { paintTodo } from './paint.js';
+import { setTodos } from './crud.js';
 
 export const handleMouseOver = (e) => e.currentTarget.classList.add('hover');
 export const handleMouseLeave = (e) => e.currentTarget.classList.remove('hover');
@@ -46,7 +47,7 @@ export const handleEnterEdit = (e) => {
     thisTodo.todo = e.target.value;
 
     // 로컬 스토리지에 저장
-    saveTodo();
+    setTodos();
   }
 };
 
@@ -63,7 +64,7 @@ export const toggleCheckbox = (e) => {
   const targetId = $parentItem.id;
   todos.find((todo) => todo.id === targetId).checked = !todos.find((todo) => todo.id === targetId)
     .checked;
-  saveTodo();
+  setTodos();
 };
 
 export const handleClickEdit = (e) => {
@@ -92,5 +93,5 @@ export const handleDeleteTodo = (e) => {
   todos = todos.filter((todo) => todo.id !== id);
 
   // 로컬 스토리지에 저장
-  saveTodo();
+  setTodos();
 };

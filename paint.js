@@ -1,4 +1,4 @@
-import { todos, saveTodo } from './index.js';
+import { setTodos } from './crud.js';
 import {
   handleAddTodo,
   handleCloseInput,
@@ -116,6 +116,6 @@ export const paintTodo = (item) => {
   const $itemList = document.querySelector('.item-list');
   const $todoInput = document.querySelector('.input');
   $itemList.insertBefore($div, $todoInput);
-  todos.push(item);
-  saveTodo();
+
+  setTodos();
 };

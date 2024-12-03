@@ -1,16 +1,10 @@
 import { createInputItemElement, paintTodo } from './paint.js';
 import { handleDeleteTodo } from './handle.js';
+import { getTodos } from './crud.js';
 
 export const $itemList = document.querySelector('.item-list');
 export const $emptyMsg = document.querySelector('.empty-msg');
 export const $modal = document.querySelector('.modal');
-
-export let todos = [];
-
-// todos 배열을 local storage에 동기화 시킴
-export const saveTodo = () => {
-  localStorage.setItem('todos', JSON.stringify(todos));
-};
 
 const closeModal = () => {
   $modal.style.display = 'none';
@@ -25,7 +19,7 @@ export const openModal = () => {
 
 // 렌더링 시 localStorage 있는 값들을 확인하여 DOM에 그리기
 const loadTodos = () => {
-  const loadedTodos = JSON.parse(localStorage.getItem('todos'));
+  const loadedTodos = getTodos();
   if (!loadedTodos || !loadedTodos.length) {
     localStorage.setItem('todos', '[]');
     $emptyMsg.style.display = 'flex';
