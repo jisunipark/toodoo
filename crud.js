@@ -19,9 +19,9 @@ export const addTodo = (newItem) => {
     method: 'POST',
     headers: { 'content-Type': 'application/json' },
     body: JSON.stringify(newItem),
-  })
-    .then((response) => response.json())
-    .then(console.log);
+  }).then((response) => {
+    if (!response.ok) throw new Error();
+  });
 };
 
 export const editTodo = (id, newTodo) => {
@@ -30,5 +30,10 @@ export const editTodo = (id, newTodo) => {
 };
 
 export const deleteTodo = (id) => {
-  todos = todos.filter((todo) => todo.id !== id);
+  fetch(`http://localhost:5001/todos/${id}`, {
+    method: 'DELETE',
+  }).then((response) => {
+    if (!response.ok) throw new Error();
+    todos = todos.filter((todo) => todo.id !== id);
+  });
 };

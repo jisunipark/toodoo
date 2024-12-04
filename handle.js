@@ -102,5 +102,4 @@ export const handleDeleteTodo = (e) => {
   $itemList.removeChild(document.getElementById(id));
 
   deleteTodo(id);
-  // setTodos();
 };
