@@ -1,3 +1,4 @@
+import { $itemList } from './index.js';
 import { addTodo, setTodos } from './crud.js';
 import {
   handleMouseOver,
@@ -9,7 +10,6 @@ import {
   handleClickDeleteIcon,
 } from './handle.js';
 
-// 입력창 아이템 요소를 생성하여 반환하는 함수
 export const createInputItemElement = () => {
   const $emptyMsg = document.querySelector('.empty-msg');
   $emptyMsg.style.display = 'none';
@@ -59,7 +59,6 @@ export const createInputItemElement = () => {
   return $div;
 };
 
-// 투두 아이템 요소를 생성한 후 item list에 추가하는 함수
 export const paintTodo = (item) => {
   const { id, checked, todo, date } = item;
 
@@ -113,7 +112,6 @@ export const paintTodo = (item) => {
   $div.addEventListener('mouseover', handleMouseOver);
   $div.addEventListener('mouseleave', handleMouseLeave);
 
-  const $itemList = document.querySelector('.item-list');
   const $todoInput = document.querySelector('.input');
   $itemList.insertBefore($div, $todoInput);
 

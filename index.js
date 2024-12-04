@@ -1,10 +1,11 @@
 import { getTodos } from './crud.js';
-import { handleDeleteTodo } from './handle.js';
+import { handleClickAddIcon, handleDeleteTodo } from './handle.js';
 import { createInputItemElement, paintTodo } from './paint.js';
 
+export const $modal = document.querySelector('.modal');
 export const $itemList = document.querySelector('.item-list');
 export const $emptyMsg = document.querySelector('.empty-msg');
-export const $modal = document.querySelector('.modal');
+const $addButton = document.getElementById('add-button');
 
 const closeModal = () => {
   $modal.style.display = 'none';
@@ -29,12 +30,9 @@ const loadTodos = () => {
   }
 };
 
-loadTodos();
+const init = () => {
+  loadTodos();
+  $addButton.addEventListener('click', handleClickAddIcon);
+};
 
-const $addButton = document.getElementById('add-button');
-
-$addButton.addEventListener('click', () => {
-  const $todoInputItem = document.querySelector('.input');
-  if ($todoInputItem) return;
-  $itemList.appendChild(createInputItemElement());
-});
+init();

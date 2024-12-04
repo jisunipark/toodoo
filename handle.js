@@ -1,6 +1,6 @@
 import { openModal, $itemList, $modal } from './index.js';
 import { setTodos, deleteTodo, editTodo } from './crud.js';
-import { paintTodo } from './paint.js';
+import { createInputItemElement, paintTodo } from './paint.js';
 import { getFormattedDate } from './util.js';
 
 /* 
@@ -13,6 +13,12 @@ export const handleMouseLeave = (e) => e.currentTarget.classList.remove('hover')
 /* 
   아이템 추가 관련
 */
+
+export const handleClickAddIcon = () => {
+  const $todoInputItem = document.querySelector('.input');
+  if ($todoInputItem) return;
+  $itemList.appendChild(createInputItemElement());
+};
 
 export const handleEnterAdd = (e) => {
   if (e.key === 'Enter' && !e.isComposing) {
