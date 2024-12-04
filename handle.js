@@ -1,5 +1,5 @@
 import { openModal, $itemList, $modal } from './index.js';
-import { addTodo, deleteTodo, editTodo } from './crud.js';
+import { addTodo, deleteTodo, editChecked, editTodo } from './crud.js';
 import { createInputItemElement, paintTodo } from './paint.js';
 import { getFormattedDate } from './util.js';
 
@@ -79,11 +79,10 @@ export const handleEnterEdit = (e) => {
 
 export const handleToggleCheckbox = (e) => {
   const $parentItem = e.currentTarget.parentNode;
+  const id = $parentItem.id;
+  const checked = e.currentTarget.checked;
   $parentItem.classList.toggle('done');
-  const targetId = $parentItem.id;
-  todos.find((todo) => todo.id === targetId).checked = !todos.find((todo) => todo.id === targetId)
-    .checked;
-  // setTodos();
+  editChecked(id, checked);
 };
 
 /* 

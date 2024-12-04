@@ -38,6 +38,18 @@ export const editTodo = (id, newTodo) => {
   });
 };
 
+export const editChecked = (id, checked) => {
+  fetch(`http://localhost:5001/todos/${id}`, {
+    method: 'PATCH',
+    headers: { 'content-Type': 'application/json' },
+    body: JSON.stringify({
+      checked,
+    }),
+  }).then((response) => {
+    if (!response.ok) throw new Error();
+  });
+};
+
 export const deleteTodo = (id) => {
   fetch(`http://localhost:5001/todos/${id}`, {
     method: 'DELETE',
