@@ -9,7 +9,7 @@ import {
   handleClickDeleteIcon,
 } from './handle.js';
 
-export const createInputItemElement = () => {
+export const paintTodoInput = () => {
   const $emptyMsg = document.querySelector('.empty-msg');
   $emptyMsg.style.display = 'none';
 
@@ -55,7 +55,7 @@ export const createInputItemElement = () => {
   $div.appendChild($small);
   $div.appendChild($buttonDiv);
 
-  return $div;
+  $itemList.appendChild($div);
 };
 
 export const paintTodo = (item) => {

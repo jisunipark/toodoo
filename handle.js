@@ -1,6 +1,6 @@
 import { openModal, $itemList, $modal } from './index.js';
 import { addTodo, deleteTodo, editChecked, editTodo } from './crud.js';
-import { createInputItemElement, paintTodo } from './paint.js';
+import { paintTodo, paintTodoInput } from './paint.js';
 import { getFormattedDate } from './util.js';
 
 /* 
@@ -17,7 +17,7 @@ export const handleMouseLeave = (e) => e.currentTarget.classList.remove('hover')
 export const handleClickAddIcon = () => {
   const $todoInputItem = document.querySelector('.input');
   if ($todoInputItem) return;
-  $itemList.appendChild(createInputItemElement());
+  paintTodoInput();
 };
 
 export const handleEnterAdd = (e) => {
