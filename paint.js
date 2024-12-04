@@ -19,6 +19,8 @@ export const paintTodoInput = () => {
   const $checkboxInput = document.createElement('input');
   $checkboxInput.type = 'checkbox';
 
+  const $checkboxLabel = document.createElement('label');
+
   const $todoInput = document.createElement('input');
   $todoInput.type = 'text';
   $todoInput.classList.add('todo-input');
@@ -51,6 +53,7 @@ export const paintTodoInput = () => {
   $buttonDiv.appendChild($deleteButton);
 
   $div.appendChild($checkboxInput);
+  $div.appendChild($checkboxLabel);
   $div.appendChild($todoInput);
   $div.appendChild($small);
   $div.appendChild($buttonDiv);
@@ -68,8 +71,12 @@ export const paintTodo = (item) => {
   const $checkboxInput = document.createElement('input');
   $checkboxInput.type = 'checkbox';
   $checkboxInput.checked = checked;
+  $checkboxInput.id = `checkbox-${id}`;
   checked && $div.classList.add('done');
   $checkboxInput.addEventListener('click', handleToggleCheckbox);
+
+  const $checkboxLabel = document.createElement('label');
+  $checkboxLabel.htmlFor = `checkbox-${id}`;
 
   const $span = document.createElement('span');
   const todoText = document.createTextNode(todo);
@@ -104,6 +111,7 @@ export const paintTodo = (item) => {
   $buttonDiv.appendChild($deleteButton);
 
   $div.appendChild($checkboxInput);
+  $div.appendChild($checkboxLabel);
   $div.appendChild($span);
   $div.appendChild($small);
   $div.appendChild($buttonDiv);
