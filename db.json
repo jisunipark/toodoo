@@ -1,3 +1,10 @@
 {
-  "todos": []
+  "todos": [
+    {
+      "id": "6929",
+      "checked": false,
+      "todo": "hello",
+      "date": "24. 12. 4."
+    }
+  ]
 }
