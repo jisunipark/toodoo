@@ -1,5 +1,5 @@
 import { openModal, $itemList, $modal } from './index.js';
-import { setTodos, deleteTodo, editTodo } from './crud.js';
+import { deleteTodo, editTodo } from './crud.js';
 import { createInputItemElement, paintTodo } from './paint.js';
 import { getFormattedDate } from './util.js';
 
@@ -74,7 +74,7 @@ export const handleEnterEdit = (e) => {
     $parentItem.addEventListener('mouseover', handleMouseOver);
 
     editTodo($parentItem.id, e.target.value);
-    setTodos();
+    // setTodos();
   }
 };
 
@@ -84,7 +84,7 @@ export const handleToggleCheckbox = (e) => {
   const targetId = $parentItem.id;
   todos.find((todo) => todo.id === targetId).checked = !todos.find((todo) => todo.id === targetId)
     .checked;
-  setTodos();
+  // setTodos();
 };
 
 /* 
@@ -102,5 +102,5 @@ export const handleDeleteTodo = (e) => {
   $itemList.removeChild(document.getElementById(id));
 
   deleteTodo(id);
-  setTodos();
+  // setTodos();
 };

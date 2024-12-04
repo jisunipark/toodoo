@@ -1,13 +1,18 @@
+import { loadTodos } from './index.js';
+
 export let todos = [];
 
-export const setTodos = () => {
-  localStorage.setItem('todos', JSON.stringify(todos));
-};
-
 export const getTodos = () => {
-  const loadedTodos = JSON.parse(localStorage.getItem('todos'));
-  if (!loadedTodos) return;
-  return loadedTodos;
+  fetch('http://localhost:3000/todos')
+    .then((response) => {
+      if (!response.ok) throw Error();
+      return response.json();
+    })
+    .then((body) => {
+      todos = [...body];
+      console.log(todos);
+      loadTodos(todos);
+    });
 };
 
 export const addTodo = (item) => {

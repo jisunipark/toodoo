@@ -1,6 +1,6 @@
-import { getTodos } from './crud.js';
+import { todos, getTodos } from './crud.js';
 import { handleClickAddIcon, handleDeleteTodo } from './handle.js';
-import { createInputItemElement, paintTodo } from './paint.js';
+import { paintTodo } from './paint.js';
 
 export const $modal = document.querySelector('.modal');
 export const $itemList = document.querySelector('.item-list');
@@ -18,20 +18,18 @@ export const openModal = () => {
   $modal.querySelector('.cancel-button').addEventListener('click', closeModal);
 };
 
-const loadTodos = () => {
-  const loadedTodos = getTodos();
-  if (!loadedTodos || !loadedTodos.length) {
-    localStorage.setItem('todos', '[]');
+export const loadTodos = (todos) => {
+  if (!todos.length) {
     $emptyMsg.style.display = 'flex';
   } else {
-    loadedTodos.forEach((item) => {
+    todos.forEach((item) => {
       paintTodo(item);
     });
   }
 };
 
 const init = () => {
-  loadTodos();
+  getTodos();
   $addButton.addEventListener('click', handleClickAddIcon);
 };
 

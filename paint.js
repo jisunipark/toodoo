@@ -1,5 +1,5 @@
 import { $itemList } from './index.js';
-import { addTodo, setTodos } from './crud.js';
+import { addTodo } from './crud.js';
 import {
   handleMouseOver,
   handleMouseLeave,
@@ -116,5 +116,5 @@ export const paintTodo = (item) => {
   $itemList.insertBefore($div, $todoInput);
 
   addTodo(item);
-  setTodos();
+  // setTodos();
 };
