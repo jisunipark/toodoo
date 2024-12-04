@@ -74,7 +74,6 @@ export const handleEnterEdit = (e) => {
     $parentItem.addEventListener('mouseover', handleMouseOver);
 
     editTodo($parentItem.id, e.target.value);
-    // setTodos();
   }
 };
 

@@ -25,8 +25,17 @@ export const addTodo = (newItem) => {
 };
 
 export const editTodo = (id, newTodo) => {
-  const thisTodo = todos.find((todo) => todo.id === id);
-  thisTodo.todo = newTodo;
+  fetch(`http://localhost:5001/todos/${id}`, {
+    method: 'PATCH',
+    headers: { 'content-Type': 'application/json' },
+    body: JSON.stringify({
+      todo: newTodo,
+    }),
+  }).then((response) => {
+    if (!response.ok) throw new Error();
+    const thisTodo = todos.find((todo) => todo.id === id);
+    thisTodo.todo = newTodo;
+  });
 };
 
 export const deleteTodo = (id) => {
