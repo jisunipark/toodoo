@@ -1,4 +1,4 @@
-import { todos, getTodos } from './crud.js';
+import { getTodos } from './crud.js';
 import { handleClickAddIcon, handleDeleteTodo } from './handle.js';
 import { paintTodo } from './paint.js';
 

@@ -1,5 +1,5 @@
 import { openModal, $itemList, $modal } from './index.js';
-import { deleteTodo, editTodo } from './crud.js';
+import { addTodo, deleteTodo, editTodo } from './crud.js';
 import { createInputItemElement, paintTodo } from './paint.js';
 import { getFormattedDate } from './util.js';
 
@@ -23,12 +23,12 @@ export const handleClickAddIcon = () => {
 export const handleEnterAdd = (e) => {
   if (e.key === 'Enter' && !e.isComposing) {
     const newItem = {
-      id: crypto.randomUUID(),
       checked: false,
       todo: e.target.value,
       date: getFormattedDate(new Date()),
     };
     paintTodo(newItem);
+    addTodo(newItem);
     e.target.value = '';
   }
 };

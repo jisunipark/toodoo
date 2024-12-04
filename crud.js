@@ -3,20 +3,25 @@ import { loadTodos } from './index.js';
 export let todos = [];
 
 export const getTodos = () => {
-  fetch('http://localhost:3000/todos')
+  fetch('http://localhost:5001/todos')
     .then((response) => {
       if (!response.ok) throw Error();
       return response.json();
     })
     .then((body) => {
       todos = [...body];
-      console.log(todos);
       loadTodos(todos);
     });
 };
 
-export const addTodo = (item) => {
-  todos.push(item);
+export const addTodo = (newItem) => {
+  fetch('http://localhost:5001/todos', {
+    method: 'POST',
+    headers: { 'content-Type': 'application/json' },
+    body: JSON.stringify(newItem),
+  })
+    .then((response) => response.json())
+    .then(console.log);
 };
 
 export const editTodo = (id, newTodo) => {

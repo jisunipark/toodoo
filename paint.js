@@ -1,5 +1,4 @@
 import { $itemList } from './index.js';
-import { addTodo } from './crud.js';
 import {
   handleMouseOver,
   handleMouseLeave,
@@ -114,7 +113,4 @@ export const paintTodo = (item) => {
 
   const $todoInput = document.querySelector('.input');
   $itemList.insertBefore($div, $todoInput);
-
-  addTodo(item);
-  // setTodos();
 };
