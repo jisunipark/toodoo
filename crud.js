@@ -1,9 +1,11 @@
 import { loadTodos } from './index.js';
 
+const BASE_URL = 'https://toodoo-be.fly.dev/api';
+
 export let todos = [];
 
 export const getTodos = () => {
-  fetch('http://localhost:5001/todos')
+  fetch(`${BASE_URL}/todos`)
     .then((response) => {
       if (!response.ok) throw Error();
       return response.json();
@@ -15,7 +17,7 @@ export const getTodos = () => {
 };
 
 export const addTodo = (newItem) => {
-  fetch('http://localhost:5001/todos', {
+  fetch(`${BASE_URL}/todos`, {
     method: 'POST',
     headers: { 'content-Type': 'application/json' },
     body: JSON.stringify(newItem),
@@ -25,7 +27,7 @@ export const addTodo = (newItem) => {
 };
 
 export const editTodo = (id, newTodo) => {
-  fetch(`http://localhost:5001/todos/${id}`, {
+  fetch(`${BASE_URL}/todos/${id}`, {
     method: 'PATCH',
     headers: { 'content-Type': 'application/json' },
     body: JSON.stringify({
@@ -39,7 +41,7 @@ export const editTodo = (id, newTodo) => {
 };
 
 export const editChecked = (id, checked) => {
-  fetch(`http://localhost:5001/todos/${id}`, {
+  fetch(`${BASE_URL}/todos/${id}`, {
     method: 'PATCH',
     headers: { 'content-Type': 'application/json' },
     body: JSON.stringify({
@@ -51,7 +53,7 @@ export const editChecked = (id, checked) => {
 };
 
 export const deleteTodo = (id) => {
-  fetch(`http://localhost:5001/todos/${id}`, {
+  fetch(`${BASE_URL}/todos/${id}`, {
     method: 'DELETE',
   }).then((response) => {
     if (!response.ok) throw new Error();
