@@ -81,7 +81,7 @@ input[type='checkbox'] + label {
 }
 
 input[type='checkbox']:checked + label {
-  background-color: #777;
+  border-color: white;
 }
 
 input[type='checkbox']:checked + label::after {
@@ -124,8 +124,7 @@ input[type='checkbox']:checked + label::after {
 }
 
 .done > .todo {
-  color: #777;
-  text-decoration: line-through;
+  color: var(--light-grey);
 }
 
 .date {
